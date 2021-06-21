@@ -1,0 +1,17 @@
+{% extends "catalog/base_page.html" %}
+
+{% block content %}
+  <h1>Mashup Library Home</h1>
+  <p>Welcome to MashupLibrary, a website developed by <em>Mashupstack Student Developers</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The library has the following record counts:</p>
+  <ul>
+    <li><strong>Books:</strong> {{ num_books }}</li>
+    <li><strong>Copies:</strong> {{ num_instances }}</li>
+    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+  </ul>
+  {% load static %}
+  <img src="{% static 'catalog/images/uml-diag.jpg' %}" alt="UML diagram" style="width:555px;height:540px;"><br>
+  <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+{% endblock %}

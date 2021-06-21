@@ -1,0 +1,30 @@
+{% extends "catalog/base_page.html" %}
+
+{% block content %}
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}
+{% block scripts %}
+<script>
+	$("#id_first_name").change(function(){
+		var firstname = $(this).val();
+		$.ajax({
+			url:"{% url 'validateauthor' %}",
+			data:{
+				'firstname':firstname
+			},
+			dataType:'json',
+			success:function(data){
+				if (data.is_taken) {
+					alert("A author with this firstname already exists.");
+				}
+			}
+		})
+	})
+</script>
+{% endblock %}

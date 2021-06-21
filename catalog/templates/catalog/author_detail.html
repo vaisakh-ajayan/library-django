@@ -1,0 +1,25 @@
+{% extends "catalog/base_page.html" %}
+
+{% block content %}
+  <h1>Name: {{ author.first_name }}</h1>
+
+  <p><strong>First Name:</strong>{{ author.first_name }}</p> <!-- author detail link not yet defined -->
+  <p><strong>Last name:</strong> {{ author.last_name }}</p>
+  <p><strong>DOB:</strong> {{ author.date_of_birth }}</p> 
+  <p><strong>Date of Death:</strong> {{ book.date_of_death }}</p>  
+  <!--
+  <p><strong>Books:</strong> {{ author.genre.all|join:", " }}</p>  
+  -->
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Books</h4>
+
+    <!-- lower-casing the model name,  followed by _set-->
+    {% for copy in author.book_set.all %}
+      <hr>
+        <a href="{{ copy.get_absolute_url }}">
+        {{ copy.title }}
+        </a>
+    {% endfor %}
+  </div>
+{% endblock %}
+<!--get_title_display-->
